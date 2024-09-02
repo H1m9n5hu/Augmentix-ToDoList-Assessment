@@ -23,7 +23,7 @@ mongoose.connect(process.env.MONGO_URI, {
 // Routes
 app.use('/api/tasks', tasksRouter);
 
-app.get('/ping', async(req, res) => {
+app.get('/welcome', async(req, res) => {
   res.send('Welcome to ToDoList API');
 })
 
