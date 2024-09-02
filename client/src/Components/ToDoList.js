@@ -11,7 +11,7 @@ const ToDoList = () => {
 
   // Fetch tasks from the server
   useEffect(() => {
-    axios.get('https://augmentix-to-do-list-assessment-h4wegcz5u.vercel.app/tasks')
+    axios.get('https://to-do-list-api-gamma.vercel.app/tasks')
       .then(response => setTaskList(response.data))
       .catch(error => console.error('Error fetching tasks:', error));
   }, []);
@@ -19,7 +19,7 @@ const ToDoList = () => {
   // Add a new task
   const inputHandler = () => {
     if (task.trim() !== '') {
-      axios.post('https://augmentix-to-do-list-assessment-h4wegcz5u.vercel.app/tasks', { title: task.trim() })
+      axios.post('https://to-do-list-api-gamma.vercel.app/tasks', { title: task.trim() })
         .then(response => {
           setTaskList([...taskList, response.data]);
           setTask('');
@@ -41,7 +41,7 @@ const ToDoList = () => {
 
   // Delete a task
   const deleteListItem = (id) => {
-    axios.delete(`https://augmentix-to-do-list-assessment-h4wegcz5u.vercel.app/tasks/${id}`)
+    axios.delete(`https://to-do-list-api-gamma.vercel.app/tasks/${id}`)
       .then(() => {
         setTaskList(taskList.filter(task => task._id !== id));
       })
@@ -55,7 +55,7 @@ const ToDoList = () => {
 
   if (taskToUpdate) {
     // Toggle the completed status in the database
-    axios.put(`https://augmentix-to-do-list-assessment-h4wegcz5u.vercel.app/tasks/${id}`, { completed: !taskToUpdate.completed })
+    axios.put(`https://to-do-list-api-gamma.vercel.app/tasks/${id}`, { completed: !taskToUpdate.completed })
       .then(response => {
         // Update the task list with the new completed status
         setTaskList(taskList.map(task => task._id === id ? response.data : task));
@@ -82,7 +82,7 @@ const ToDoList = () => {
 
   const updateTask = () => {
     if (editText.trim() !== '') {
-      axios.put(`https://augmentix-to-do-list-assessment-h4wegcz5u.vercel.app/tasks/${editIndex}`, { title: editText })
+      axios.put(`https://to-do-list-api-gamma.vercel.app/tasks/${editIndex}`, { title: editText })
         .then(response => {
           setTaskList(taskList.map(task => task._id === editIndex ? response.data : task));
           setEditIndex(null);
