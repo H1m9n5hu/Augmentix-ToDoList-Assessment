@@ -8,7 +8,6 @@ router.post('/', async (req, res) => {
   const { title } = req.body;
   try {
     const newTask = new Task({ title });
-    console.log(newTask);
     const savedTask = await newTask.save();
     res.status(201).json(savedTask);
   } catch (err) {
@@ -20,7 +19,6 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const tasks = await Task.find();
-    console.log(tasks);
     res.status(200).json(tasks);
   } catch (err) {
     res.status(500).json({ error: err.message });
